@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <title>Mapa com Pinos V2</title>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="styles.css">
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    </head>
+
+    <body>
+        <div class="container py-4">
+            <div class="card">
+                <div class="card-body">
+                    <section class="d-flex gap-4">
+                        <div class="mapa-container flex-1" id="mapa"></div>
+
+                        <div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">EQUIPAMENTOS</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center gap-1">
+                                                <div class="color-box" style="background-color: #000;" data-item="equipamentos" draggable="true" data-color="#000"></div>
+                                                <span>TOTENS</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td data-item="equipamentos" draggable="true" data-color="#0070bf">
+                                            <div class="d-flex align-items-center gap-1">
+                                                <div class="color-box" style="background-color: #0070bf;"></div>
+                                                <span>QUIOSQUES</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td data-item="equipamentos" draggable="true" data-color="#f705ff">
+                                            <div class="d-flex align-items-center gap-1">
+                                                <div class="color-box" style="background-color: #f705ff;"></div>
+                                                <span>COMODATO</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td data-item="equipamentos" draggable="true" data-color="#feff00">
+                                            <div class="d-flex align-items-center gap-1">
+                                                <div class="color-box" style="background-color: #feff00;"></div>
+                                                <span>MOBILIÁRIO</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td data-item="equipamentos" draggable="true" data-color="#ffbe04">
+                                            <div class="d-flex align-items-center gap-1">
+                                                <div class="color-box" style="background-color: #ffbe04;"></div>
+                                                <span>MÍDIA</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td data-item="equipamentos" draggable="true" data-color="#fe0300">
+                                            <div class="d-flex align-items-center gap-1">
+                                                <div class="color-box" style="background-color: #fe0300;"></div>
+                                                <span>LIXEIRAS</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td data-item="equipamentos" draggable="true" data-color="#92d14f">
+                                            <div class="d-flex align-items-center gap-1">
+                                                <div class="color-box" style="background-color: #92d14f;"></div>
+                                                <span>PAISAGISMO</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td data-item="equipamentos" draggable="true" data-color="#42eced">
+                                            <div class="d-flex align-items-center gap-1">
+                                                <div class="color-box" style="background-color: #42eced;"></div>
+                                                <span>EVENTOS</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> 
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <script src="scripts.js"></script>
+    </body>
+</html>
