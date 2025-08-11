@@ -1,5 +1,9 @@
-$(function(){
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+$(function () {
     let corSelecionada = null;
+    let nomeSelecionado = null;
     let pinoArrastando = null;
     let offsetX = 0;
     let offsetY = 0;
@@ -10,7 +14,8 @@ $(function(){
 
     // Quando começa a arrastar da tabela
     $('[data-item="equipamentos"]').on('dragstart', function(e) {
-        corSelecionada = $(this).data('color');
+        corSelecionada = $(this).css("background-color");
+        nomeSelecionado = $(this).data("name");
     });
 
     const img = $('#imgContainer');
@@ -29,13 +34,15 @@ $(function(){
         const x = e.originalEvent.clientX - rect.left - 7;
         const y = e.originalEvent.clientY - rect.top - 7;
 
-        criarPino(x, y, corSelecionada);
+        criarPino(x, y, corSelecionada, nomeSelecionado);
     });
 
-    function criarPino(x, y, cor) {
+    function criarPino(x, y, cor, nome) {
         const id = 'pino-' + (++contadorPinos);
 
-        const pino = $('<div class="pino" draggable="false"></div>')
+        const pino = $(`
+            <div class="pino" draggable="false" data-bs-toggle="tooltip" data-bs-title="${nome}"></div>
+            `)
             .css({
                 backgroundColor: cor,
                 color: cor,
@@ -43,11 +50,15 @@ $(function(){
                 top: y + 'px'
             })
             .attr('data-color', cor)
-            .attr('data-id', id);
+            .attr('data-id', id)
+            .attr('data-name', nome);
 
         img.append(pino);
 
-        salvarPino(pino, id);
+        // Inicializa o tooltip para o novo pino
+        new bootstrap.Tooltip(pino[0]);
+
+        salvarPino(pino, id, nome);
     }
 
     function salvarPino($pino, id) {
@@ -55,7 +66,8 @@ $(function(){
             id: id,
             x: parseFloat($pino.css('left')),
             y: parseFloat($pino.css('top')),
-            cor: $pino.data('color')
+            cor: $pino.data('color'),
+            nome: $pino.data('name')
         };
 
         pinosData.push(pos);
