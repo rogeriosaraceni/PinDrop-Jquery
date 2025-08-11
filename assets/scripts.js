@@ -35,7 +35,7 @@ $(function(){
     function criarPino(x, y, cor) {
         const id = 'pino-' + (++contadorPinos);
 
-        const pino = $('<div class="pino"></div>')
+        const pino = $('<div class="pino" draggable="false"></div>')
             .css({
                 backgroundColor: cor,
                 left: x + 'px',
@@ -100,6 +100,11 @@ $(function(){
             pinoArrastando.css({ left: x + 'px', top: y + 'px' });
             atualizarPosicaoPino(pinoArrastando);
         }
+    });
+
+    // impede duplicar por drag HTML5
+    $(document).on('dragstart', '.pino', function(e) {
+        e.preventDefault(); 
     });
 
     // Mouseup para soltar o pino
