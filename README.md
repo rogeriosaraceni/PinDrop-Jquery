@@ -1,4 +1,4 @@
-# pinDrop
+# pinDrop JS
 
 Projeto para adicionar, mover e remover pinos coloridos sobre uma imagem/mapa com suporte a tooltips e botão para limpar todos os pinos.
 
