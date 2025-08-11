@@ -13,7 +13,7 @@ $(function(){
         corSelecionada = $(this).data('color');
     });
 
-    const img = $('#mapa');
+    const img = $('#mapContainer');
 
     // Permitir soltar no mapa
     img.on('dragover', function(e) {
