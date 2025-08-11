@@ -69,6 +69,7 @@ $(function () {
         };
 
         pinosData.push(pos);
+        atualizarEstadoBotaoLimpar();
         console.log("Pinos atuais:", pinosData);
     }
 
@@ -79,6 +80,7 @@ $(function () {
             pinosData[idx].x = parseFloat($pino.css('left'));
             pinosData[idx].y = parseFloat($pino.css('top'));
         }
+        atualizarEstadoBotaoLimpar();
         console.log("Pinos atualizados:", pinosData);
     }
 
@@ -86,6 +88,7 @@ $(function () {
         const id = $pino.data('id');
         pinosData = pinosData.filter(p => p.id !== id);
         $pino.remove();
+        atualizarEstadoBotaoLimpar();
         console.log("Pinos após remoção:", pinosData);
     }
 
@@ -128,10 +131,22 @@ $(function () {
         removerPino($(this));
     });
 
+    function atualizarEstadoBotaoLimpar() {
+        if (pinosData.length === 0) {
+            $('#btnLimparPinos').attr('disabled', true);
+        } else {
+            $('#btnLimparPinos').attr('disabled', false);
+        }
+    }
+
     // Botão para limpar todos os pinos
-    $('#btnLimparPinos').on('click', function() {
-        $('.pino').remove();
-        pinosData = [];
-        console.log("Todos os pinos foram removidos.");
+    $('#btnLimparPinos').on('click', function () {
+        if (confirm('Tem certeza que quer apagar todos os pinos do mapa?')) {
+            $('.pino').remove();
+            pinosData = [];
+            console.log("Todos os pinos foram removidos.");
+        }
     });
+
+    atualizarEstadoBotaoLimpar();
 });
