@@ -85,6 +85,12 @@ $(function () {
     }
 
     function removerPino($pino) {
+        // Pega a instância do tooltip associada ao elemento
+        const tooltipInstance = bootstrap.Tooltip.getInstance($pino[0]);
+        if (tooltipInstance) {
+            tooltipInstance.dispose();  // destrói o tooltip
+        }
+        
         const id = $pino.data('id');
         pinosData = pinosData.filter(p => p.id !== id);
         $pino.remove();
