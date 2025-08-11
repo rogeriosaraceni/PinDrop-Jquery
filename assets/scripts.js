@@ -18,15 +18,15 @@ $(function () {
         nomeSelecionado = $(this).data("name");
     });
 
-    const img = $('#imgContainer');
+    const imgContainer = $('#imgContainer');
 
     // Permitir soltar no mapa
-    img.on('dragover', function(e) {
+    imgContainer.on('dragover', function(e) {
         e.preventDefault();
     });
 
     // Ao soltar da tabela no mapa
-    img.on('drop', function(e) {
+    imgContainer.on('drop', function(e) {
         e.preventDefault();
         if (!corSelecionada) return;
 
@@ -40,9 +40,7 @@ $(function () {
     function criarPino(x, y, cor, nome) {
         const id = 'pino-' + (++contadorPinos);
 
-        const pino = $(`
-            <div class="pino" draggable="false" data-bs-toggle="tooltip" data-bs-title="${nome}"></div>
-            `)
+        const pino = $(`<div class="pino" draggable="false" data-bs-toggle="tooltip" data-bs-title="${nome}"></div>`)
             .css({
                 backgroundColor: cor,
                 color: cor,
@@ -53,7 +51,7 @@ $(function () {
             .attr('data-id', id)
             .attr('data-name', nome);
 
-        img.append(pino);
+        imgContainer.append(pino);
 
         // Inicializa o tooltip para o novo pino
         new bootstrap.Tooltip(pino[0]);
@@ -102,13 +100,13 @@ $(function () {
     // Mousemove para arrastar
     $(document).on('mousemove', function(e) {
         if (pinoArrastando) {
-            const rectMapa = img[0].getBoundingClientRect();
+            const rectMapa = imgContainer[0].getBoundingClientRect();
             let x = e.clientX - rectMapa.left - offsetX;
             let y = e.clientY - rectMapa.top - offsetY;
 
             // Limitar dentro do mapa
-            x = Math.max(0, Math.min(x, img.width() - 14));
-            y = Math.max(0, Math.min(y, img.height() - 14));
+            x = Math.max(0, Math.min(x, imgContainer.width() - 14));
+            y = Math.max(0, Math.min(y, imgContainer.height() - 14));
 
             pinoArrastando.css({ left: x + 'px', top: y + 'px' });
             atualizarPosicaoPino(pinoArrastando);
@@ -128,5 +126,12 @@ $(function () {
     // Duplo clique para remover (delegação)
     $(document).on('dblclick', '.pino', function() {
         removerPino($(this));
+    });
+
+    // Botão para limpar todos os pinos
+    $('#btnLimparPinos').on('click', function() {
+        $('.pino').remove();
+        pinosData = [];
+        console.log("Todos os pinos foram removidos.");
     });
 });

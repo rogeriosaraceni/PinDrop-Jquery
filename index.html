@@ -16,7 +16,11 @@
         <div class="container py-4">
             <div class="card">
                 <div class="card-body">
-                    <p>Clique 2 vezes para deletar o pin dentro da imagem.</p>
+                    <div class="d-flex justify-content-between align-items-center gap-2 mb-3">
+                        <p>Clique 2 vezes para deletar o pin dentro da imagem.</p>
+                        <button id="btnLimparPinos" class="btn btn-danger mb-3">Limpar Todos os Pins</button>
+                    </div>
+
                     <section class="d-flex gap-4">
                         <div class="wrapper-imgUpload" id="imgContainer">
                             <img src="./assets/atual.jpg" alt="Mapa">
@@ -42,7 +46,8 @@
                                                     data-name="Totens"
                                                 >
                                                 </div>
-                                                <span>TOTENS</span>
+                                                <span>TOTENS</span> /
+                                                <small>0</small>
                                             </div>
                                         </td>
                                     </tr>
