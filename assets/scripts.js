@@ -13,7 +13,7 @@ $(function(){
         corSelecionada = $(this).data('color');
     });
 
-    const img = $('#mapContainer');
+    const img = $('#imgContainer');
 
     // Permitir soltar no mapa
     img.on('dragover', function(e) {
@@ -38,6 +38,7 @@ $(function(){
         const pino = $('<div class="pino" draggable="false"></div>')
             .css({
                 backgroundColor: cor,
+                color: cor,
                 left: x + 'px',
                 top: y + 'px'
             })
