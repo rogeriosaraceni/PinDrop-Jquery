@@ -28,7 +28,7 @@
     border-radius: 0.75rem;
 }
 
-.pino {
+.pin {
     position: absolute;
     width: 14px;
     height: 14px;
@@ -36,16 +36,8 @@
     border: 2px solid #000;
     cursor: grab;
 }
-.content-pino{
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 14px;
-    height: 14px;
-}
 
-.pino.icon {
+.pin.icon {
     width: auto;
     height: auto;
     border: 0;

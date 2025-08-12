@@ -1,72 +1,72 @@
 function pinDrop(options) {
-    const imgContainer = $(options.mapaSelector);
-    const btnLimpar = $(options.botaoLimparSelector);
+    const imgContainer = $(options.imgContainerSelector);
+    const removeAllButton = $(options.removeAllButtonSelector);
+    const confirmMessage = options.confirmMessage || 'Do you really want to delete all pins?';
 
     let itemNameID = null;
     let itemColor = null;
     let itemTitle = null;
-    let pinoArrastando = null;
+    let pinDragging = null;
     let offsetX = 0;
     let offsetY = 0;
 
-    let pinosData = [];
+    let pinsData = [];
     let contadorPinos = 0;
 
     /** -------------------------------------------------
     * Functions
     ----------------------------------------------------*/
-    function atualizarEstadoBotaoLimpar() {
-        if (pinosData.length === 0) {
-            btnLimpar.attr('disabled', true);
+    function updateStateClearButton() {
+        if (pinsData.length === 0) {
+            removeAllButton.attr('disabled', true);
         } else {
-            btnLimpar.attr('disabled', false);
+            removeAllButton.attr('disabled', false);
         }
     }
 
-    function salvarPino($pino, id) {
+    function savePin($pin, id) {
         const pos = {
             id: id,
-            nameid: String($pino.data('nameid')).toLowerCase(),
-            title: $pino.data('title'),
-            x: parseFloat($pino.css('left')),
-            y: parseFloat($pino.css('top'))
+            nameid: String($pin.data('nameid')).toLowerCase(),
+            title: $pin.data('title'),
+            x: parseFloat($pin.css('left')),
+            y: parseFloat($pin.css('top'))
         };
-
-        pinosData.push(pos);
-        atualizarEstadoBotaoLimpar();
-        atualizarContadores();
-        console.log("Pinos atuais:", pinosData);
+        pinsData.push(pos);
+        updateStateClearButton();
+        updateCounters();
+        console.log("Current pins:", pinsData);
     }
 
-    function atualizarPosicaoPino($pino) {
-        const id = $pino.data('id');
-        const idx = pinosData.findIndex(p => p.id === id);
+    function updatePinPosition($pin) {
+        const id = $pin.data('id');
+        const idx = pinsData.findIndex(p => p.id === id);
         if (idx !== -1) {
-            pinosData[idx].x = parseFloat($pino.css('left'));
-            pinosData[idx].y = parseFloat($pino.css('top'));
+            pinsData[idx].x = parseFloat($pin.css('left'));
+            pinsData[idx].y = parseFloat($pin.css('top'));
         }
-        atualizarEstadoBotaoLimpar();
-        console.log("Pinos atualizados:", pinosData);
+        updateStateClearButton();
+        console.log("Updated pins:", pinsData);
     }
 
-    function removerPino($pino) {
-        const tooltipInstance = bootstrap.Tooltip.getInstance($pino[0]);
+    function removePin($pin) {
+        const tooltipInstance = bootstrap.Tooltip.getInstance($pin[0]);
         if (tooltipInstance) {
             tooltipInstance.dispose();
         }
 
-        const id = $pino.data('id');
-        pinosData = pinosData.filter(p => p.id !== id);
-        $pino.remove();
-        atualizarEstadoBotaoLimpar();
-        atualizarContadores();
-        console.log("Pinos após remoção:", pinosData);
+        const id = $pin.data('id');
+        pinsData = pinsData.filter(p => p.id !== id);
+        $pin.remove();
+        updateStateClearButton();
+        updateCounters();
+        console.log("Pins after removal:", pinsData);
     }
 
-    function criarPino(x, y, cor, nameid, title) {
-        const id = 'pino-' + (++contadorPinos);
+    function createPin(x, y, cor, nameid, title) {
+        const id = 'pin-' + (++contadorPinos);
 
-        const pino = $(`<div class="pino" draggable="false" data-bs-toggle="tooltip" title="${title}"></div>`)
+        const pin = $(`<div class="pin" draggable="false" data-bs-toggle="tooltip" title="${title}"></div>`)
             .css({
                 left: x + 'px',
                 top: y + 'px',
@@ -76,28 +76,28 @@ function pinDrop(options) {
             .attr('data-nameid', nameid)
             .attr('data-title', title);
 
-        imgContainer.append(pino);
+        imgContainer.append(pin);
 
         if (window.bootstrap?.Tooltip) {
-            new bootstrap.Tooltip(pino[0]);
+            new bootstrap.Tooltip(pin[0]);
         }
 
-        salvarPino(pino, id, nameid, title);
+        savePin(pin, id, nameid, title);
     }
 
-    function atualizarContadores() {
+    function updateCounters() {
         // // Zera todos os contadores na tabela
         $('[data-selected]').text(0);
 
         // // Conta quantos pinos existem de cada nome
-        const contagem = {};
-        $.each(pinosData, function(_, pino) {
-            const nameID = pino.nameid;
-            contagem[nameID] = (contagem[nameID] || 0) + 1;
+        const count = {};
+        $.each(pinsData, function(_, pin) {
+            const nameID = pin.nameid;
+            count[nameID] = (count[nameID] || 0) + 1;
         });
 
         // // Atualiza na tabela
-        $.each(contagem, function(nameid, total) {
+        $.each(count, function(nameid, total) {
             $(`[data-selected="${nameid}"]`).text(total);
         });
     }
@@ -123,18 +123,18 @@ function pinDrop(options) {
         const x = e.originalEvent.clientX - rect.left - 7;
         const y = e.originalEvent.clientY - rect.top - 7;
 
-        criarPino(x, y, itemColor, itemNameID, itemTitle);
+        createPin(x, y, itemColor, itemNameID, itemTitle);
     });
 
-    $(document).on('mousedown', '.pino', function(e) {
-        pinoArrastando = $(this);
+    $(document).on('mousedown', '.pin', function(e) {
+        pinDragging = $(this);
         const rect = this.getBoundingClientRect();
         offsetX = e.clientX - rect.left;
         offsetY = e.clientY - rect.top;
     });
 
     $(document).on('mousemove', function(e) {
-        if (pinoArrastando) {
+        if (pinDragging) {
             const rectMapa = imgContainer[0].getBoundingClientRect();
             let x = e.clientX - rectMapa.left - offsetX;
             let y = e.clientY - rectMapa.top - offsetY;
@@ -142,33 +142,33 @@ function pinDrop(options) {
             x = Math.max(0, Math.min(x, imgContainer.width() - 14));
             y = Math.max(0, Math.min(y, imgContainer.height() - 14));
 
-            pinoArrastando.css({ left: x + 'px', top: y + 'px' });
-            atualizarPosicaoPino(pinoArrastando);
+            pinDragging.css({ left: x + 'px', top: y + 'px' });
+            updatePinPosition(pinDragging);
         }
     });
 
-    $(document).on('dragstart', '.pino', function(e) {
+    $(document).on('dragstart', '.pin', function(e) {
         e.preventDefault();
     });
 
     $(document).on('mouseup', function() {
-        pinoArrastando = null;
+        pinDragging = null;
     });
 
-    $(document).on('dblclick', '.pino', function() {
-        removerPino($(this));
+    $(document).on('dblclick', '.pin', function() {
+        removePin($(this));
     });
 
-    btnLimpar.on('click', function() {
-        if (confirm('Tem certeza que quer apagar todos os pinos do mapa?')) {
-            $('.pino').each(function() {
+    removeAllButton.on('click', function() {
+        if (confirm(confirmMessage)) {
+            $('.pin').each(function() {
                 const tooltipInstance = bootstrap.Tooltip.getInstance(this);
                 if (tooltipInstance) tooltipInstance.dispose();
             });
-            $('.pino').remove();
-            pinosData = [];
-            atualizarEstadoBotaoLimpar();
-            atualizarContadores();
+            $('.pin').remove();
+            pinsData = [];
+            updateStateClearButton();
+            updateCounters();
             console.log("Todos os pinos foram removidos.");
         }
     });
@@ -176,5 +176,5 @@ function pinDrop(options) {
     /** -------------------------------------------------
     * Estado inicial do botão
     ----------------------------------------------------*/
-    atualizarEstadoBotaoLimpar();
+    updateStateClearButton();
 }

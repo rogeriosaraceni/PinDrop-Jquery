@@ -20,7 +20,7 @@
 
                     <div class="d-flex justify-content-between align-items-center gap-2 mb-3">
                         <p>Clique 2 vezes para deletar o pin dentro da imagem.</p>
-                        <button id="btnLimparPinos" class="btn btn-danger mb-3">Limpar Todos os Pins</button>
+                        <button id="removeAllButtonPins" class="btn btn-danger mb-3">Limpar Todos os Pins</button>
                     </div>
 
                     <section class="d-flex flex-column flex-lg-row gap-4">
@@ -195,8 +195,9 @@
         <script>
             $(function() {
                 pinDrop({
-                    mapaSelector: '#imgContainer',
-                    botaoLimparSelector: '#btnLimparPinos'
+                    imgContainerSelector: '#imgContainer',
+                    removeAllButtonSelector: '#removeAllButtonPins',
+                    confirmMessage: 'Você quer mesmo apagar todos os pins?'
                 });
             });
         </script>
