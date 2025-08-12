@@ -86,17 +86,17 @@ function pinDrop(options) {
     }
 
     function updateCounters() {
-        // // Zera todos os contadores na tabela
+        //Resets all counters in the tablea
         $('[data-selected]').text(0);
 
-        // // Conta quantos pinos existem de cada nome
+        //Count how many pins there are of each nameID
         const count = {};
         $.each(pinsData, function(_, pin) {
             const nameID = pin.nameid;
             count[nameID] = (count[nameID] || 0) + 1;
         });
 
-        // // Atualiza na tabela
+        //Update table
         $.each(count, function(nameid, total) {
             $(`[data-selected="${nameid}"]`).text(total);
         });
@@ -169,12 +169,12 @@ function pinDrop(options) {
             pinsData = [];
             updateStateClearButton();
             updateCounters();
-            console.log("Todos os pinos foram removidos.");
+            console.log("All pins have been removed.");
         }
     });
 
     /** -------------------------------------------------
-    * Estado inicial do botão
+    * Initial state of the button
     ----------------------------------------------------*/
     updateStateClearButton();
 }
