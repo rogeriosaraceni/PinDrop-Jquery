@@ -19,15 +19,11 @@
     flex-direction: column;
     overflow: hidden;
     border-radius: 0.75rem;
-    width: 100%;
-    max-width: 900px;
-    height: 350px;
     border: 1px solid #ccc;
 }
 .wrapper-imgUpload img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
     display: block;
     border-radius: 0.75rem;
 }
