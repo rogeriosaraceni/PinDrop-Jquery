@@ -12,6 +12,9 @@ function pinDrop(options) {
     let pinosData = [];
     let contadorPinos = 0;
 
+    /** -------------------------------------------------
+    * Functions
+    ----------------------------------------------------*/
     function atualizarEstadoBotaoLimpar() {
         if (pinosData.length === 0) {
             btnLimpar.attr('disabled', true);
@@ -82,7 +85,26 @@ function pinDrop(options) {
         salvarPino(pino, id, nameid, title);
     }
 
-    // Eventos
+    function atualizarContadores() {
+        // // Zera todos os contadores na tabela
+        $('[data-selected]').text(0);
+
+        // // Conta quantos pinos existem de cada nome
+        const contagem = {};
+        $.each(pinosData, function(_, pino) {
+            const nameID = pino.nameid;
+            contagem[nameID] = (contagem[nameID] || 0) + 1;
+        });
+
+        // // Atualiza na tabela
+        $.each(contagem, function(nameid, total) {
+            $(`[data-selected="${nameid}"]`).text(total);
+        });
+    }
+
+    /** -------------------------------------------------
+    * Events
+    ----------------------------------------------------*/
     $('[data-item="equipamentos"]').on('dragstart', function (e) {
         itemColor = $(this).css("background-color");
         itemNameID = $(this).data("nameid");
@@ -151,23 +173,8 @@ function pinDrop(options) {
         }
     });
 
-    function atualizarContadores() {
-        // // Zera todos os contadores na tabela
-        $('[data-selected]').text(0);
-
-        // // Conta quantos pinos existem de cada nome
-        const contagem = {};
-        $.each(pinosData, function(_, pino) {
-            const nameID = pino.nameid;
-            contagem[nameID] = (contagem[nameID] || 0) + 1;
-        });
-
-        // // Atualiza na tabela
-        $.each(contagem, function(nameid, total) {
-            $(`[data-selected="${nameid}"]`).text(total);
-        });
-    }
-
-    // Estado inicial do botão
+    /** -------------------------------------------------
+    * Estado inicial do botão
+    ----------------------------------------------------*/
     atualizarEstadoBotaoLimpar();
 }
