@@ -2,8 +2,9 @@ function pinDrop(options) {
     const imgContainer = $(options.mapaSelector);
     const btnLimpar = $(options.botaoLimparSelector);
 
-    let corSelecionada = null;
-    let nomeSelecionado = null;
+    let itemNameID = null;
+    let itemColor = null;
+    let itemTitle = null;
     let pinoArrastando = null;
     let offsetX = 0;
     let offsetY = 0;
@@ -22,14 +23,15 @@ function pinDrop(options) {
     function salvarPino($pino, id) {
         const pos = {
             id: id,
+            nameid: String($pino.data('nameid')).toLowerCase(),
+            title: $pino.data('title'),
             x: parseFloat($pino.css('left')),
-            y: parseFloat($pino.css('top')),
-            cor: $pino.data('color'),
-            nome: $pino.data('name')
+            y: parseFloat($pino.css('top'))
         };
 
         pinosData.push(pos);
         atualizarEstadoBotaoLimpar();
+        atualizarContadores();
         console.log("Pinos atuais:", pinosData);
     }
 
@@ -54,33 +56,37 @@ function pinDrop(options) {
         pinosData = pinosData.filter(p => p.id !== id);
         $pino.remove();
         atualizarEstadoBotaoLimpar();
+        atualizarContadores();
         console.log("Pinos após remoção:", pinosData);
     }
 
-    function criarPino(x, y, cor, nome) {
+    function criarPino(x, y, cor, nameid, title) {
         const id = 'pino-' + (++contadorPinos);
 
-        const pino = $(`<div class="pino" draggable="false" data-bs-toggle="tooltip" title="${nome}"></div>`)
+        const pino = $(`<div class="pino" draggable="false" data-bs-toggle="tooltip" title="${title}"></div>`)
             .css({
-                backgroundColor: cor,
                 left: x + 'px',
-                top: y + 'px'
+                top: y + 'px',
+                backgroundColor: cor
             })
-            .attr('data-color', cor)
             .attr('data-id', id)
-            .attr('data-name', nome);
+            .attr('data-nameid', nameid)
+            .attr('data-title', title);
 
         imgContainer.append(pino);
 
-        new bootstrap.Tooltip(pino[0]);
+        if (window.bootstrap?.Tooltip) {
+            new bootstrap.Tooltip(pino[0]);
+        }
 
-        salvarPino(pino, id, nome);
+        salvarPino(pino, id, nameid, title);
     }
 
     // Eventos
-    $('[data-item="equipamentos"]').on('dragstart', function(e) {
-        corSelecionada = $(this).css("background-color");
-        nomeSelecionado = $(this).data("name");
+    $('[data-item="equipamentos"]').on('dragstart', function (e) {
+        itemColor = $(this).css("background-color");
+        itemNameID = $(this).data("nameid");
+        itemTitle = $(this).data("title");
     });
 
     imgContainer.on('dragover', function(e) {
@@ -89,13 +95,13 @@ function pinDrop(options) {
 
     imgContainer.on('drop', function(e) {
         e.preventDefault();
-        if (!corSelecionada) return;
+        if (!itemColor) return;
 
         const rect = this.getBoundingClientRect();
         const x = e.originalEvent.clientX - rect.left - 7;
         const y = e.originalEvent.clientY - rect.top - 7;
 
-        criarPino(x, y, corSelecionada, nomeSelecionado);
+        criarPino(x, y, itemColor, itemNameID, itemTitle);
     });
 
     $(document).on('mousedown', '.pino', function(e) {
@@ -140,9 +146,27 @@ function pinDrop(options) {
             $('.pino').remove();
             pinosData = [];
             atualizarEstadoBotaoLimpar();
+            atualizarContadores();
             console.log("Todos os pinos foram removidos.");
         }
     });
+
+    function atualizarContadores() {
+        // // Zera todos os contadores na tabela
+        $('[data-selected]').text(0);
+
+        // // Conta quantos pinos existem de cada nome
+        const contagem = {};
+        $.each(pinosData, function(_, pino) {
+            const nameID = pino.nameid;
+            contagem[nameID] = (contagem[nameID] || 0) + 1;
+        });
+
+        // // Atualiza na tabela
+        $.each(contagem, function(nameid, total) {
+            $(`[data-selected="${nameid}"]`).text(total);
+        });
+    }
 
     // Estado inicial do botão
     atualizarEstadoBotaoLimpar();

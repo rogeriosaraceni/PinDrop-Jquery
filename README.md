@@ -1,38 +1,67 @@
 # pinDrop Jquery
 
-Projeto para adicionar, mover e remover pinos coloridos sobre uma imagem/mapa com suporte a tooltips e botão para limpar todos os pinos.
+**pinDrop** é um plugin em jQuery que permite arrastar e soltar pinos sobre uma imagem (mapa), podendo movê-los, removê-los, contar quantos existem por categoria e limpar todos de uma vez.  
+Ideal para mapas interativos, plantas baixas ou qualquer aplicação visual que exija posicionamento dinâmico de marcadores.
 
-## Funcionalidades
+---
 
-- Arrastar itens da tabela para o mapa para criar pinos coloridos.
-- Mover os pinos dentro da área do mapa.
-- Remover pinos com duplo clique.
-- Mostrar tooltip com o nome do pino.
-- Botão para limpar todos os pinos.
-- Botão habilitado/desabilitado conforme existem pinos no mapa.
+## 📦 Dependências
+- [jQuery](https://jquery.com/) (>= 3.0)
+- [Bootstrap Tooltip](https://getbootstrap.com/docs/5.3/components/tooltips/) (opcional, apenas se quiser usar tooltips)
 
-## Como usar
+---
 
-### Requisitos
+## 🚀 Inicialização
 
-- jQuery 3.x
-- Bootstrap 5.x (CSS e JS)
-- Imagem de fundo no container do mapa (`#imgContainer`)
-- Botão para limpar pinos com id `btnLimparPinos`
+```javascript
+pinDrop({
+    mapaSelector: '#mapa',                 // Elemento que receberá os pinos
+    botaoLimparSelector: '#btnLimparPinos' // Botão para limpar todos os pinos
+});
 
+<!-- Elementos arrastáveis -->
+<div data-item="pino" data-nome="Loja A">🛒</div>
+<div data-item="pino" data-nome="Loja B">🏬</div>
 
-### Exemplo básico de uso
+<!-- Mapa onde os pinos serão soltos -->
+<div id="mapa" style="width: 600px; height: 400px; position: relative; background: #eee;"></div>
 
-```html
-<div id="imgContainer" style="width: 100%; height: 300px; position: relative; background: url('mapa.jpg') no-repeat center / contain;"></div>
+<!-- Botão para limpar todos os pinos -->
+<button id="btnLimparPinos" disabled>Limpar Pinos</button>
 
-<button id="btnLimparPinos" class="btn btn-danger mb-3">Limpar Todos os Pinos</button>
-
+<!-- Tabela de contagem (opcional) -->
 <table>
-    <tbody>
-        <tr data-item="equipamentos" data-name="TOTENS" style="background-color: #000;" draggable="true">
-            <td>TOTENS</td>
-        </tr>
-        <!-- mais itens -->
-    </tbody>
+    <tr>
+        <td>Loja A:</td>
+        <td data-selected="loja a">0</td>
+    </tr>
+    <tr>
+        <td>Loja B:</td>
+        <td data-selected="loja b">0</td>
+    </tr>
 </table>
+```
+
+## ⚙️ Funcionalidades
+- Arrastar pinos da lista para o mapa
+- Mover pinos dentro do mapa (mantendo dentro dos limites da imagem)
+- Remover pino clicando com o botão direito (ou pressionando Alt + clique)
+- Contador automático de pinos por categoria (data-selected="categoria")
+- Botão limpar para remover todos os pinos de uma vez
+
+## 🛠 Opções do pinDrop
+| Opção                 | Tipo   | Padrão            | Descrição                                   |
+| --------------------- | ------ | ----------------- | ------------------------------------------- |
+| `mapaSelector`        | string | `#mapa`           | Seletor do elemento que receberá os pinos   |
+| `botaoLimparSelector` | string | `#btnLimparPinos` | Seletor do botão para limpar todos os pinos |
+
+## 📊 Função de contador
+O plugin já inclui a função atualizarContadores() que busca todos os elementos com data-selected="categoria" e atualiza o valor com base nos pinos no mapa.
+```html
+<td data-selected="loja a">0</td>
+```
+
+## 📝 Observações
+- O tooltip é removido automaticamente quando o pino é deletado.
+- O botão "Limpar Pinos" é ativado/desativado conforme existam pinos no mapa.
+- Caso o Bootstrap Tooltip não esteja presente, basta remover as partes relacionadas a ele no código.
