@@ -1,7 +1,7 @@
 function pinDrop(options) {
     const imgContainer = $(options.imgContainerSelector);
     const removeAllButton = $(options.removeAllButtonSelector);
-    const confirmMessage = options.confirmMessage || 'Do you really want to delete all pins?';
+    const confirmMessage = options.confirmMessage || 'Tem certeza que quer apagar todos os pinos do mapa?';
 
     let itemNameID = null;
     let itemColor = null;
@@ -14,14 +14,20 @@ function pinDrop(options) {
     let contadorPinos = 0;
 
     /** -------------------------------------------------
-    * Functions
+    * Função de cálculo
+    ----------------------------------------------------*/
+    function calc(tr){
+        const atual  = parseInt(tr.find('[data-selected]').val()) || 0;
+        const pro    = parseInt(tr.find('[data-valor="pro"]').val()) || 0;
+        const result = atual - pro;
+        tr.find('[data-valor="result"]').val(result);
+    }
+
+    /** -------------------------------------------------
+    * Atualiza botão remover todos
     ----------------------------------------------------*/
     function updateStateClearButton() {
-        if (pinsData.length === 0) {
-            removeAllButton.attr('disabled', true);
-        } else {
-            removeAllButton.attr('disabled', false);
-        }
+        removeAllButton.attr('disabled', pinsData.length === 0);
     }
 
     function savePin($pin, id) {
@@ -35,7 +41,6 @@ function pinDrop(options) {
         pinsData.push(pos);
         updateStateClearButton();
         updateCounters();
-        console.log("Current pins:", pinsData);
     }
 
     function updatePinPosition($pin) {
@@ -46,21 +51,17 @@ function pinDrop(options) {
             pinsData[idx].y = parseFloat($pin.css('top'));
         }
         updateStateClearButton();
-        console.log("Updated pins:", pinsData);
     }
 
     function removePin($pin) {
         const tooltipInstance = bootstrap.Tooltip.getInstance($pin[0]);
-        if (tooltipInstance) {
-            tooltipInstance.dispose();
-        }
+        if (tooltipInstance) tooltipInstance.dispose();
 
         const id = $pin.data('id');
         pinsData = pinsData.filter(p => p.id !== id);
         $pin.remove();
         updateStateClearButton();
         updateCounters();
-        console.log("Pins after removal:", pinsData);
     }
 
     function createPin(x, y, cor, nameid, title) {
@@ -86,26 +87,28 @@ function pinDrop(options) {
     }
 
     function updateCounters() {
-        //Resets all counters in the tablea
         $('[data-selected]').val(0);
 
-        //Count how many pins there are of each nameID
         const count = {};
         $.each(pinsData, function(_, pin) {
             const nameID = pin.nameid;
             count[nameID] = (count[nameID] || 0) + 1;
         });
 
-        //Update table
         $.each(count, function(nameid, total) {
             $(`[data-selected="${nameid}"]`).val(total);
+        });
+
+        // recalcula as diferenças
+        $('[data-tr="calc"]').each(function(){
+            calc($(this));
         });
     }
 
     /** -------------------------------------------------
-    * Events
+    * Eventos
     ----------------------------------------------------*/
-    $('[data-item="equipamentos"]').on('dragstart', function (e) {
+    $('[data-item="equipamentos"]').on('dragstart', function () {
         itemColor = $(this).css("background-color");
         itemNameID = $(this).data("nameid");
         itemTitle = $(this).data("title");
@@ -169,33 +172,20 @@ function pinDrop(options) {
             pinsData = [];
             updateStateClearButton();
             updateCounters();
-            console.log("All pins have been removed.");
         }
     });
 
     /** -------------------------------------------------
-    * Initial state of the button
+    * Estado inicial
     ----------------------------------------------------*/
     updateStateClearButton();
+
+    // já calcula as diferenças na inicialização
+    $('[data-tr="calc"]').each(function(){
+        const tr = $(this);
+        calc(tr);
+        tr.find('input').on('input', function(){
+            calc(tr);
+        });
+    });
 }
-
-function calc(tr){
-    const atual  = parseInt(tr.find('[data-selected]').val()) || 0
-    const pro    = parseInt(tr.find('[data-valor="pro"]').val()) || 0
-    const result = atual - pro
-
-    console.log(atual, pro, result);
-    
-    tr.find('[data-valor="result"]').val(result)
-}
-
-$('[data-tr="calc"]').each(function(){
-    const tr = $(this)
-    calc(tr)
-
-    tr.find('input').on('input', function(){
-        calc(tr)
-
-        console.log('mudou');
-    })
-})
