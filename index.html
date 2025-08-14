@@ -26,257 +26,252 @@
                     </div>
 
                     <section class="main-boxs">
-                        <article class="box-imgs">
-                            <div class="d-flex flex-column h-100">
-                                <div class="overflow-auto">
-                                    <div class="wrapper-imgUpload" style="width: 900px; height: 350px;">
-                                        <img src="./assets/atual.jpg" alt="Mapa">
-                                    </div>
+                        <article class="box-images">
+                            <div class="wrapper-imgUpload">
+                                <div class="content-imgUpload">
+                                    <img src="./assets/atual.jpg" alt="Mapa">
                                 </div>
+                            </div>
 
-                                <div class="overflow-auto">
-                                    <div class="wrapper-imgUpload" id="imgContainer" style="width: 900px; height: 350px;">
-                                        <img src="./assets/atual.jpg" alt="Mapa">
-                                    </div>
+                            <div class="wrapper-imgUpload">
+                                <div class="content-imgUpload" id="imgContainer">
+                                    <img src="./assets/atual.jpg" alt="Mapa">
                                 </div>
                             </div>
                         </article>
 
-                        <article class="box-tabela">
-                            <div class="d-flex flex-column align-items-center justify-content-center h-100">
-                                <section class="w-100 mx-auto" style="max-width: 440px;">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th class="text-center" style="width: 120px;">Equipamentos</th>
-                                                <th class="text-center" style="width: 100px;">Atual</th>
-                                                <th class="text-center" style="width: 100px;">Pro</th>
-                                                <th class="text-center" style="width: 100px;">Δ</th>
-                                            </tr>
-                                        </thead>
+                        <article class="box-table">
+                            <table class="table" style="table-layout: fixed;">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width: 120px;">Equipamentos</th>
+                                        <th class="text-center" style="width: 100px;">Atual</th>
+                                        <th class="text-center" style="width: 100px;">Pro</th>
+                                        <th class="text-center" style="width: 100px;">Δ</th>
+                                    </tr>
+                                </thead>
 
-                                        <tbody>
-                                            <tr data-tr="calc">
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-1">
-                                                        <div 
-                                                            class="color-box" 
-                                                            style="background-color: #000;"
-                                                            data-item="equipamentos" 
-                                                            data-nameid="totens"
-                                                            data-title="Totens"
-                                                            draggable="true"
-                                                        >
-                                                        </div>
-                                                        <span>Totens</span>
-                                                    </div>
-                                                </td>
-                                                
-                                                <td>
-                                                    <input type="number" class="form-control text-center" readonly data-selected="totens" value="0">
-                                                </td>
-                                                <td>
-                                                    <input type="number" class="form-control text-center" readonly data-valor="pro" value="10">
-                                                </td>
-                                                <td>
-                                                    <input type="number" class="form-control text-center" readonly data-valor="result" value="0">
-                                                </td>
-                                            </tr>
+                                <tbody>
+                                    <tr data-tr="calc">
+                                        <td>
+                                            <div class="d-flex align-items-center gap-1">
+                                                <div 
+                                                    class="color-box" 
+                                                    style="background-color: #000;"
+                                                    data-item="equipamentos" 
+                                                    data-nameid="totens"
+                                                    data-title="Totens"
+                                                    draggable="true"
+                                                >
+                                                </div>
+                                                <span>Totens</span>
+                                            </div>
+                                        </td>
+                                        
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-selected="totens" value="0">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="pro" value="10">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="result" value="0">
+                                        </td>
+                                    </tr>
 
-                                            <tr data-tr="calc">
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-1">
-                                                        <div 
-                                                            class="color-box" 
-                                                            style="background-color: #0070bf;" 
-                                                            data-item="equipamentos"
-                                                            data-nameid="quiosques"
-                                                            data-title="Quiosques"
-                                                            draggable="true"
-                                                        >
-                                                        </div>
-                                                        <span>Quiosques</span>
-                                                    </div>
-                                                </td>
-                                                
-                                                <td>
-                                                    <input type="text" class="form-control text-center" readonly data-selected="quiosques" value="0">
-                                                </td>
-                                                <td>
-                                                    <input type="number" class="form-control text-center" readonly data-valor="pro" value="10">
-                                                </td>
-                                                <td>
-                                                    <input type="number" class="form-control text-center" readonly data-valor="result" value="0">
-                                                </td>
-                                            </tr>
+                                    <tr data-tr="calc">
+                                        <td>
+                                            <div class="d-flex align-items-center gap-1">
+                                                <div 
+                                                    class="color-box" 
+                                                    style="background-color: #0070bf;" 
+                                                    data-item="equipamentos"
+                                                    data-nameid="quiosques"
+                                                    data-title="Quiosques"
+                                                    draggable="true"
+                                                >
+                                                </div>
+                                                <span>Quiosques</span>
+                                            </div>
+                                        </td>
+                                        
+                                        <td>
+                                            <input type="text" class="form-control text-center" readonly data-selected="quiosques" value="0">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="pro" value="10">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="result" value="0">
+                                        </td>
+                                    </tr>
 
-                                            <tr data-tr="calc">
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-1">
-                                                        <div 
-                                                            class="color-box" 
-                                                            style="background-color: #f705ff;" 
-                                                            data-item="equipamentos"
-                                                            data-title="Comodato"
-                                                            data-nameid="comodato"
-                                                            draggable="true"
-                                                        >
-                                                        </div>
-                                                        <span>Comodato</span>
-                                                    </div>
-                                                </td>
-                                                
-                                                <td>
-                                                    <input type="text" class="form-control text-center" readonly data-selected="comodato" value="0">
-                                                </td>
-                                                <td>
-                                                    <input type="number" class="form-control text-center" readonly data-valor="pro" value="10">
-                                                </td>
-                                                <td>
-                                                    <input type="number" class="form-control text-center" readonly data-valor="result" value="0">
-                                                </td>
-                                            </tr>
+                                    <tr data-tr="calc">
+                                        <td>
+                                            <div class="d-flex align-items-center gap-1">
+                                                <div 
+                                                    class="color-box" 
+                                                    style="background-color: #f705ff;" 
+                                                    data-item="equipamentos"
+                                                    data-title="Comodato"
+                                                    data-nameid="comodato"
+                                                    draggable="true"
+                                                >
+                                                </div>
+                                                <span>Comodato</span>
+                                            </div>
+                                        </td>
+                                        
+                                        <td>
+                                            <input type="text" class="form-control text-center" readonly data-selected="comodato" value="0">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="pro" value="10">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="result" value="0">
+                                        </td>
+                                    </tr>
 
-                                            <tr data-tr="calc">
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-1">
-                                                        <div 
-                                                            class="color-box" 
-                                                            style="background-color: #feff00;" 
-                                                            data-item="equipamentos"
-                                                            data-nameid="mobiliario"
-                                                            data-title="Mobiliário"
-                                                            draggable="true"
-                                                        >
-                                                        </div>
-                                                        <span>Mobiliário</span>
-                                                    </div>
-                                                </td>
-                                                
-                                                <td>
-                                                    <input type="text" class="form-control text-center" readonly data-selected="mobiliario" value="0">
-                                                </td>
-                                                <td>
-                                                    <input type="number" class="form-control text-center" readonly data-valor="pro" value="10">
-                                                </td>
-                                                <td>
-                                                    <input type="number" class="form-control text-center" readonly data-valor="result" value="0">
-                                                </td>
-                                            </tr>
+                                    <tr data-tr="calc">
+                                        <td>
+                                            <div class="d-flex align-items-center gap-1">
+                                                <div 
+                                                    class="color-box" 
+                                                    style="background-color: #feff00;" 
+                                                    data-item="equipamentos"
+                                                    data-nameid="mobiliario"
+                                                    data-title="Mobiliário"
+                                                    draggable="true"
+                                                >
+                                                </div>
+                                                <span>Mobiliário</span>
+                                            </div>
+                                        </td>
+                                        
+                                        <td>
+                                            <input type="text" class="form-control text-center" readonly data-selected="mobiliario" value="0">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="pro" value="10">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="result" value="0">
+                                        </td>
+                                    </tr>
 
-                                            <tr data-tr="calc">
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-1">
-                                                        <div 
-                                                            class="color-box" 
-                                                            style="background-color: #ffbe04;" 
-                                                            data-item="equipamentos"
-                                                            data-nameid="midia"
-                                                            data-title="Mídia"    
-                                                            draggable="true"
-                                                        >
-                                                        </div>
-                                                        <span>Mídia</span>
-                                                    </div>
-                                                </td>
-                                                
-                                                <td>
-                                                    <input type="text" class="form-control text-center" readonly data-selected="midia" value="0">
-                                                </td>
-                                                <td>
-                                                    <input type="number" class="form-control text-center" readonly data-valor="pro" value="10">
-                                                </td>
-                                                <td>
-                                                    <input type="number" class="form-control text-center" readonly data-valor="result" value="0">
-                                                </td>
-                                            </tr>
+                                    <tr data-tr="calc">
+                                        <td>
+                                            <div class="d-flex align-items-center gap-1">
+                                                <div 
+                                                    class="color-box" 
+                                                    style="background-color: #ffbe04;" 
+                                                    data-item="equipamentos"
+                                                    data-nameid="midia"
+                                                    data-title="Mídia"    
+                                                    draggable="true"
+                                                >
+                                                </div>
+                                                <span>Mídia</span>
+                                            </div>
+                                        </td>
+                                        
+                                        <td>
+                                            <input type="text" class="form-control text-center" readonly data-selected="midia" value="0">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="pro" value="10">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="result" value="0">
+                                        </td>
+                                    </tr>
 
-                                            <tr data-tr="calc">
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-1">
-                                                        <div 
-                                                            class="color-box" 
-                                                            style="background-color: #fe0300;" 
-                                                            data-item="equipamentos"
-                                                            data-nameid="lixeiras"
-                                                            data-title="Lixeiras"
-                                                            draggable="true"
-                                                        >
-                                                        </div>
-                                                        <span>Lixeiras</span>
-                                                    </div>
-                                                </td>
-                                                
-                                                <td>
-                                                    <input type="text" class="form-control text-center" readonly data-selected="lixeiras" value="0">
-                                                </td>
-                                                <td>
-                                                    <input type="number" class="form-control text-center" readonly data-valor="pro" value="10">
-                                                </td>
-                                                <td>
-                                                    <input type="number" class="form-control text-center" readonly data-valor="result" value="0">
-                                                </td>
-                                            </tr>
+                                    <tr data-tr="calc">
+                                        <td>
+                                            <div class="d-flex align-items-center gap-1">
+                                                <div 
+                                                    class="color-box" 
+                                                    style="background-color: #fe0300;" 
+                                                    data-item="equipamentos"
+                                                    data-nameid="lixeiras"
+                                                    data-title="Lixeiras"
+                                                    draggable="true"
+                                                >
+                                                </div>
+                                                <span>Lixeiras</span>
+                                            </div>
+                                        </td>
+                                        
+                                        <td>
+                                            <input type="text" class="form-control text-center" readonly data-selected="lixeiras" value="0">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="pro" value="10">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="result" value="0">
+                                        </td>
+                                    </tr>
 
-                                            <tr data-tr="calc">
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-1">
-                                                        <div 
-                                                            class="color-box" 
-                                                            style="background-color: #92d14f;"
-                                                            data-item="equipamentos" 
-                                                            data-nameid="paisagismo"
-                                                            data-title="Paisagismo"
-                                                            draggable="true"
-                                                        >
-                                                        </div>
-                                                        <span>Paisagismo</span>
-                                                    </div>
-                                                </td>
-                                                
-                                                <td>
-                                                    <input type="text" class="form-control text-center" readonly data-selected="equipamentos" value="0">
-                                                </td>
-                                                <td>
-                                                    <input type="number" class="form-control text-center" readonly data-valor="pro" value="10">
-                                                </td>
-                                                <td>
-                                                    <input type="number" class="form-control text-center" readonly data-valor="result" value="0">
-                                                </td>
-                                            </tr>
+                                    <tr data-tr="calc">
+                                        <td>
+                                            <div class="d-flex align-items-center gap-1">
+                                                <div 
+                                                    class="color-box" 
+                                                    style="background-color: #92d14f;"
+                                                    data-item="equipamentos" 
+                                                    data-nameid="paisagismo"
+                                                    data-title="Paisagismo"
+                                                    draggable="true"
+                                                >
+                                                </div>
+                                                <span>Paisagismo</span>
+                                            </div>
+                                        </td>
+                                        
+                                        <td>
+                                            <input type="text" class="form-control text-center" readonly data-selected="equipamentos" value="0">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="pro" value="10">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="result" value="0">
+                                        </td>
+                                    </tr>
 
-                                            <tr data-tr="calc">
-                                                <td>
-                                                    <div class="d-flex align-items-center gap-1">
-                                                        <div 
-                                                            class="color-box" 
-                                                            style="background-color: #42eced;" 
-                                                            data-item="equipamentos"
-                                                            data-nameid="eventos"
-                                                            data-title="Eventos"
-                                                            draggable="true"
-                                                        >
-                                                        </div>
-                                                        <span>Eventos</span>
-                                                    </div>
-                                                </td>
-                                                
-                                                <td>
-                                                    <input type="text" class="form-control text-center" readonly data-selected="eventos" value="0">
-                                                </td>
-                                                <td>
-                                                    <input type="number" class="form-control text-center" readonly data-valor="pro" value="10">
-                                                </td>
-                                                <td>
-                                                    <input type="number" class="form-control text-center" readonly data-valor="result" value="0">
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </section>
-                            </div>
-                        </article> 
+                                    <tr data-tr="calc">
+                                        <td>
+                                            <div class="d-flex align-items-center gap-1">
+                                                <div 
+                                                    class="color-box" 
+                                                    style="background-color: #42eced;" 
+                                                    data-item="equipamentos"
+                                                    data-nameid="eventos"
+                                                    data-title="Eventos"
+                                                    draggable="true"
+                                                >
+                                                </div>
+                                                <span>Eventos</span>
+                                            </div>
+                                        </td>
+                                        
+                                        <td>
+                                            <input type="text" class="form-control text-center" readonly data-selected="eventos" value="0">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="pro" value="10">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="result" value="0">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </article>
                     </section>
+
                 </div>
             </div>
         </div>
@@ -294,3 +289,54 @@
         </script>
     </body>
 </html>
+
+<style>
+.main-boxs{
+    display: flex;
+}
+.box-images{
+    flex: 0.9;
+    display: flex;
+    flex-direction: column;
+}
+.box-table{
+    width: 470px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.wrapper-imgUpload {
+    position: relative;
+    margin-bottom: 1.5rem;
+    overflow: auto;
+    width: 100%;
+}
+.content-imgUpload {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    border: 1px solid #ccc;
+    width: 900px; 
+    height: 350px;
+}
+.content-imgUpload img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 0.75rem;
+}
+
+@media (max-width: 1440px) {
+    .main-boxs{
+        flex-direction: column;
+    }
+
+    .content-imgUpload {
+        margin: 0 auto;
+    }
+}
+</style>

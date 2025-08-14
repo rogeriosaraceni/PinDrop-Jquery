@@ -13,44 +13,6 @@
     cursor: grab;
 }
 
-.main-boxs{
-    display: flex;
-    gap: 1rem;
-}
-.box-imgs{
-    flex: 6;
-    margin: 0 auto;
-}
-.box-tabela{
-    flex: 4;
-}
-
-@media (max-width: 1380px) {
-    .main-boxs{
-        flex-direction: column;
-    }
-
-    .box-imgs, .box-tabela{
-        flex: 0 1 100%;
-    }
-}
-
-.wrapper-imgUpload {
-    position: relative;
-    margin: 0 auto 1.5rem 0;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    border-radius: 0.75rem;
-    border: 1px solid #ccc;
-}
-.wrapper-imgUpload img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    border-radius: 0.75rem;
-}
-
 .pin {
     position: absolute;
     width: 14px;
@@ -58,11 +20,4 @@
     border-radius: 50%;
     border: 2px solid #000;
     cursor: grab;
-}
-
-.pin.icon {
-    width: auto;
-    height: auto;
-    border: 0;
-    font-size: 1.5rem;
 }
