@@ -13,8 +13,31 @@
     cursor: grab;
 }
 
+.main-boxs{
+    display: flex;
+    gap: 1rem;
+}
+.box-imgs{
+    flex: 6;
+    margin: 0 auto;
+}
+.box-tabela{
+    flex: 4;
+}
+
+@media (max-width: 1380px) {
+    .main-boxs{
+        flex-direction: column;
+    }
+
+    .box-imgs, .box-tabela{
+        flex: 0 1 100%;
+    }
+}
+
 .wrapper-imgUpload {
     position: relative;
+    margin: 0 auto 1.5rem 0;
     display: flex;
     flex-direction: column;
     overflow: hidden;
