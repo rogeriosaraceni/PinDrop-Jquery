@@ -36,12 +36,15 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th colspan="2">EQUIPAMENTOS</th>
+                                        <th class="text-center" style="width: 120px;">EQUIPAMENTOS</th>
+                                        <th class="text-center" style="width: 100px;">Atual</th>
+                                        <th class="text-center" style="width: 100px;">Pro</th>
+                                        <th class="text-center" style="width: 100px;">Δ</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    <tr>
+                                    <tr data-tr="calc">
                                         <td>
                                             <div class="d-flex align-items-center gap-1">
                                                 <div 
@@ -53,13 +56,22 @@
                                                     draggable="true"
                                                 >
                                                 </div>
-                                                <span>TOTENS</span> /
-                                                <small data-selected="totens" class="badge bg-secondary rounded-pill">0</small>
+                                                <span>TOTENS</span>
                                             </div>
+                                        </td>
+                                        
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-selected="totens" value="0">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="pro" value="10">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="result" value="0">
                                         </td>
                                     </tr>
 
-                                    <tr>
+                                    <tr data-tr="calc">
                                         <td>
                                             <div class="d-flex align-items-center gap-1">
                                                 <div 
@@ -72,12 +84,21 @@
                                                 >
                                                 </div>
                                                 <span>QUIOSQUES</span>
-                                                <small data-selected="quiosques" class="badge bg-secondary rounded-pill">0</small>
                                             </div>
+                                        </td>
+                                        
+                                        <td>
+                                            <input type="text" class="form-control text-center" readonly data-selected="quiosques" value="0">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="pro" value="10">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="result" value="0">
                                         </td>
                                     </tr>
 
-                                    <tr>
+                                    <tr data-tr="calc">
                                         <td>
                                             <div class="d-flex align-items-center gap-1">
                                                 <div 
@@ -90,12 +111,21 @@
                                                 >
                                                 </div>
                                                 <span>COMODATO</span>
-                                                <small data-selected="comodato" class="badge bg-secondary rounded-pill">0</small>
                                             </div>
+                                        </td>
+                                        
+                                        <td>
+                                            <input type="text" class="form-control text-center" readonly data-selected="comodato" value="0">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="pro" value="10">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="result" value="0">
                                         </td>
                                     </tr>
 
-                                    <tr>
+                                    <tr data-tr="calc">
                                         <td>
                                             <div class="d-flex align-items-center gap-1">
                                                 <div 
@@ -108,12 +138,21 @@
                                                 >
                                                 </div>
                                                 <span>MOBILIÁRIO</span>
-                                                <small data-selected="mobiliario" class="badge bg-secondary rounded-pill">0</small>
                                             </div>
+                                        </td>
+                                        
+                                        <td>
+                                            <input type="text" class="form-control text-center" readonly data-selected="mobiliario" value="0">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="pro" value="10">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="result" value="0">
                                         </td>
                                     </tr>
 
-                                    <tr>
+                                    <tr data-tr="calc">
                                         <td>
                                             <div class="d-flex align-items-center gap-1">
                                                 <div 
@@ -126,12 +165,21 @@
                                                 >
                                                 </div>
                                                 <span>MÍDIA</span>
-                                                <small data-selected="midia" class="badge bg-secondary rounded-pill">0</small>
                                             </div>
+                                        </td>
+                                        
+                                        <td>
+                                            <input type="text" class="form-control text-center" readonly data-selected="midia" value="0">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="pro" value="10">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="result" value="0">
                                         </td>
                                     </tr>
 
-                                    <tr>
+                                    <tr data-tr="calc">
                                         <td>
                                             <div class="d-flex align-items-center gap-1">
                                                 <div 
@@ -144,12 +192,21 @@
                                                 >
                                                 </div>
                                                 <span>LIXEIRAS</span>
-                                                <small data-selected="lixeiras" class="badge bg-secondary rounded-pill">0</small>
                                             </div>
+                                        </td>
+                                        
+                                        <td>
+                                            <input type="text" class="form-control text-center" readonly data-selected="lixeiras" value="0">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="pro" value="10">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="result" value="0">
                                         </td>
                                     </tr>
 
-                                    <tr>
+                                    <tr data-tr="calc">
                                         <td>
                                             <div class="d-flex align-items-center gap-1">
                                                 <div 
@@ -162,12 +219,21 @@
                                                 >
                                                 </div>
                                                 <span>PAISAGISMO</span>
-                                                <small data-selected="paisagismo" class="badge bg-secondary rounded-pill">0</small>
                                             </div>
+                                        </td>
+                                        
+                                        <td>
+                                            <input type="text" class="form-control text-center" readonly data-selected="equipamentos" value="0">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="pro" value="10">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="result" value="0">
                                         </td>
                                     </tr>
 
-                                    <tr>
+                                    <tr data-tr="calc">
                                         <td>
                                             <div class="d-flex align-items-center gap-1">
                                                 <div 
@@ -180,8 +246,17 @@
                                                 >
                                                 </div>
                                                 <span>EVENTOS</span>
-                                                <small data-selected="eventos" class="badge bg-secondary rounded-pill">0</small>
                                             </div>
+                                        </td>
+                                        
+                                        <td>
+                                            <input type="text" class="form-control text-center" readonly data-selected="eventos" value="0">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="pro" value="10">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control text-center" readonly data-valor="result" value="0">
                                         </td>
                                     </tr>
                                 </tbody>

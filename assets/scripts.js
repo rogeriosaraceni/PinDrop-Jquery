@@ -87,7 +87,7 @@ function pinDrop(options) {
 
     function updateCounters() {
         //Resets all counters in the tablea
-        $('[data-selected]').text(0);
+        $('[data-selected]').val(0);
 
         //Count how many pins there are of each nameID
         const count = {};
@@ -98,7 +98,7 @@ function pinDrop(options) {
 
         //Update table
         $.each(count, function(nameid, total) {
-            $(`[data-selected="${nameid}"]`).text(total);
+            $(`[data-selected="${nameid}"]`).val(total);
         });
     }
 
@@ -178,3 +178,24 @@ function pinDrop(options) {
     ----------------------------------------------------*/
     updateStateClearButton();
 }
+
+function calc(tr){
+    const atual  = parseInt(tr.find('[data-selected]').val()) || 0
+    const pro    = parseInt(tr.find('[data-valor="pro"]').val()) || 0
+    const result = atual - pro
+
+    console.log(atual, pro, result);
+    
+    tr.find('[data-valor="result"]').val(result)
+}
+
+$('[data-tr="calc"]').each(function(){
+    const tr = $(this)
+    calc(tr)
+
+    tr.find('input').on('input', function(){
+        calc(tr)
+
+        console.log('mudou');
+    })
+})
